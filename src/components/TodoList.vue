@@ -14,22 +14,16 @@
 
 <script>
     import TodoItem from './TodoItem';
+    import { mapState } from 'vuex';
 
     export default {
         name: 'TodoList',
         components: {
             TodoItem
         },
-        computed: {
-            todoItems: {
-                get: function() {
-                    return this.$store.state.todos;
-		        },
-		        set: function(todoList) {
-
-		        }
-            }
-        },
+        computed: mapState({
+            todoItems: state => state.todos
+        }),
         methods: {
             clearItem: function (todo) {
                //TO-DO implement delete todo from todos
