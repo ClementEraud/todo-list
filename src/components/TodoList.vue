@@ -21,8 +21,13 @@
             TodoItem
         },
         computed: {
-            todoItems () {
-                return this.$store.state.todos;
+            todoItems: {
+                get: function() {
+                    return this.$store.state.todos;
+		        },
+		        set: function(newValue) {
+
+		        }
             }
         },
         methods: {
