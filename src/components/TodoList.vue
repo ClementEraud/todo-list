@@ -13,35 +13,21 @@
 </template>
 
 <script>
-    import TodoItem from './TodoItem'
+    import TodoItem from './TodoItem';
 
     export default {
         name: 'TodoList',
         components: {
             TodoItem
         },
-        data: () => ({
-            todoItems: [
-                {
-                    id: 1,
-                    title: 'Item 1',
-                    description: 'do item 1'
-                },
-                {
-                    id: 2,
-                    title: 'Item 2',
-                    description: 'do item 2'
-                },
-                {
-                    id: 3,
-                    title: 'Item 3',
-                    description: 'do item 3'
-                },
-            ]
-        }),
+        computed: {
+            todoItems () {
+                return this.$store.state.todos;
+            }
+        },
         methods: {
             clearItem: function (todo) {
-                this.todoItems = this.todoItems.filter(item => item.id !== todo.id);
+               //TO-DO implement delete todo from todos
             }
         }
     }
