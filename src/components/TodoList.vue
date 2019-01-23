@@ -25,7 +25,7 @@
                 get: function() {
                     return this.$store.state.todos;
 		        },
-		        set: function(newValue) {
+		        set: function(todoList) {
 
 		        }
             }
