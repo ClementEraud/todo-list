@@ -12,7 +12,7 @@
           </v-flex>
           <v-spacer></v-spacer>
           <v-flex>
-            <v-btn icon v-on:click="switchTheme" align-end>
+            <v-btn icon v-on:click="switchTheme">
               <v-icon>invert_colors</v-icon>
             </v-btn>
           </v-flex>

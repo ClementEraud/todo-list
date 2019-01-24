@@ -25,19 +25,19 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    ADD_TODO(state, todo) {
-      state.todos.push(todo);
-    },
     SWITCH_THEME(state) {
       state.darkTheme = !state.darkTheme;
+    },
+    REMOVE_TODO(state, todoToRemove) {
+      state.todos = state.todos.filter(todo => todo.id !== todoToRemove.id);
     }
   },
   actions: {
-    addTodo(todo) {
-      this.commit('ADD_TODO', todo);
+    switchTheme({ commit }) {
+      commit('SWITCH_THEME');
     },
-    switchTheme() {
-      this.commit('SWITCH_THEME');
+    removeTodo({ commit }, todoToRemove) {
+      commit('REMOVE_TODO', todoToRemove);
     }
   }
 });

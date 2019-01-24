@@ -25,8 +25,8 @@
             todoItems: state => state.todos
         }),
         methods: {
-            clearItem: function () {
-               //TO-DO implement delete todo from todos
+            clearItem: function (todoToRemove) {
+               this.$store.dispatch('removeTodo', todoToRemove);
             }
         }
     }
