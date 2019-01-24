@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     darkTheme: false,
+    isAddingTodo: false,
     todos: [
       {
         id: 1,
@@ -30,6 +31,12 @@ export default new Vuex.Store({
     },
     REMOVE_TODO(state, todoToRemove) {
       state.todos = state.todos.filter(todo => todo.id !== todoToRemove.id);
+    },
+    DISPLAY_ADDING_TODO(state, isAddingTodo) {
+      state.isAddingTodo = isAddingTodo;
+    },
+    ADD_TODO(state, todoToAdd) {
+      state.todos.push(todoToAdd);
     }
   },
   actions: {
@@ -38,6 +45,12 @@ export default new Vuex.Store({
     },
     removeTodo({ commit }, todoToRemove) {
       commit('REMOVE_TODO', todoToRemove);
+    },
+    displayAddingTodo({ commit }, isAddingTodo) {
+      commit('DISPLAY_ADDING_TODO', isAddingTodo);
+    },
+    addTodo({ commit }, todoToAdd) {
+      commit('ADD_TODO', todoToAdd);
     }
   }
 });
