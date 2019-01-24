@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    darkTheme: false,
     todos: [
       {
         id: 1,
@@ -24,13 +25,19 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    ADD_TODO(todo) {
-      this.state.todos.push(todo);
+    ADD_TODO(state, todo) {
+      state.todos.push(todo);
+    },
+    SWITCH_THEME(state) {
+      state.darkTheme = !state.darkTheme;
     }
   },
   actions: {
     addTodo(todo) {
       this.commit('ADD_TODO', todo);
+    },
+    switchTheme() {
+      this.commit('SWITCH_THEME');
     }
   }
 });

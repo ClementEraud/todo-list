@@ -25,7 +25,7 @@
             todoItems: state => state.todos
         }),
         methods: {
-            clearItem: function (todo) {
+            clearItem: function () {
                //TO-DO implement delete todo from todos
             }
         }
