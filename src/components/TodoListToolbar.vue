@@ -15,7 +15,7 @@
         name: 'TodoListToolbar',
         methods: {
             addTodo() {
-                this.$store.dispatch('displayAddingTodo', true);
+                this.$store.dispatch('displayAddFormTodo', true);
             }
         }
     }
