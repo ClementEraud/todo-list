@@ -18,12 +18,12 @@
     export default {
         name: 'TodoHeader',
         computed: mapState({
-        darkTheme: state => state.darkTheme
+            darkTheme: state => state.darkTheme
         }),
         methods: {
-        switchTheme: function () {
-            this.$store.dispatch('switchTheme');
-        }
+            switchTheme: function () {
+                this.$store.dispatch('switchTheme');
+            }
         }
     }
 </script>
