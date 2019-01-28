@@ -36,7 +36,7 @@ export default {
             rules: [
                 v => !!v || `Can't be empty !`,
                 v => (v && v.length !== 0) || `Can't be empty !`,
-                v => (v && v.length < 255) || 'Easy there, tiger!'
+                v => (v && v.length < 50) || 'Easy there, tiger!'
             ]
         }
     },
