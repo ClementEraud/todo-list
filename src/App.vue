@@ -1,21 +1,16 @@
 <template>
   <v-app>
+    <todo-header></todo-header>
     <v-content>
       <v-container id="content-container">
-        <v-layout row>
-          <v-spacer></v-spacer>
-          <v-flex>
+        <v-layout row wrap>
+          <v-flex md4>
             <v-card v-bind:dark="darkTheme">
               <todo-list-toolbar></todo-list-toolbar>
               <todo-list></todo-list>
             </v-card>
           </v-flex>
           <v-spacer></v-spacer>
-          <v-flex>
-            <v-btn icon v-on:click="switchTheme">
-              <v-icon>invert_colors</v-icon>
-            </v-btn>
-          </v-flex>
         </v-layout>
       </v-container>
     </v-content>
@@ -25,13 +20,15 @@
 <script>
   import TodoList from './components/TodoList';
   import TodoListToolbar from './components/TodoListToolbar';
+  import TodoHeader from './components/TodoHeader';
   import { mapState } from 'vuex';
 
   export default {
     name: 'App',
     components: {
       TodoList,
-      TodoListToolbar
+      TodoListToolbar,
+      TodoHeader
     },
     data () {
       return {
