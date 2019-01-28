@@ -1,11 +1,11 @@
 <template>
-  <v-app>
+  <v-app v-bind:dark="darkTheme">
     <todo-header></todo-header>
     <v-content>
       <v-container id="content-container">
         <v-layout row wrap>
           <v-flex md4>
-            <v-card v-bind:dark="darkTheme">
+            <v-card>
               <todo-list-toolbar></todo-list-toolbar>
               <todo-list></todo-list>
             </v-card>
@@ -37,12 +37,7 @@
     },
     computed: mapState({
       darkTheme: state => state.darkTheme
-    }),
-    methods: {
-      switchTheme: function () {
-        this.$store.dispatch('switchTheme');
-      }
-    }
+    })
   }
 </script>
 
