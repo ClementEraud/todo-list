@@ -78,9 +78,31 @@ export default new Vuex.Store({
         console.error(err);
       }
     },
-    editTodo({ commit }, todoEdited) {
-      commit('EDIT_TODO', todoEdited);
-      commit('REMOVE_TODO_FROM_EDITION', todoEdited._id);
+    async editTodo({ commit }, todoEdited) {
+      try {
+        await axios.post(todoUrl, {
+          query: `mutation UpdateTodo($id: ID, $newTodo: TodoInput){
+            updateTodo(id: $id, newTodo: $newTodo){
+              _id,
+              title,
+              description
+            }
+          }`,
+          variables: {
+            id: todoEdited._id,
+            newTodo: {
+              title: todoEdited.title,
+              description: todoEdited.description
+            }
+          }
+        });
+        
+        commit('EDIT_TODO', todoEdited);
+        commit('REMOVE_TODO_FROM_EDITION', todoEdited._id);
+      } catch(err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      }
     },
     async fetchTodos({ commit }) {
       try {
