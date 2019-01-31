@@ -1,17 +1,14 @@
 <template>
-    <v-container fluid grid-list-lg>
-        <v-layout column>
-            <v-flex v-if="displayAddFormTodo">
-                <todo-form></todo-form>
-            </v-flex>
-            <v-flex 
-                xs10 
-                v-for="todo in todoItems" 
-                v-bind:key="todo._id">
-                <todo-item v-bind:todoItem="todo"></todo-item>
-            </v-flex>
-        </v-layout>
-    </v-container>
+  <v-container fluid grid-list-lg>
+    <v-layout column>
+      <v-flex v-if="displayAddFormTodo">
+        <todo-form></todo-form>
+      </v-flex>
+      <v-flex xs10 v-for="todo in todoItems" v-bind:key="todo._id">
+        <todo-item v-bind:todoItem="todo"></todo-item>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -32,5 +29,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

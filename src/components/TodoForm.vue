@@ -1,28 +1,28 @@
 <template>
-    <v-card ripple hover tile>
-        <v-card-title>What do you want to do next ?</v-card-title>
-        <v-card-text>
-            <v-form ref="form">
-                <v-text-field
-                    v-model="title"
-                    :rules="rules"
-                    label="Title"
-                    clearable
-                ></v-text-field>
-                <v-text-field
-                    v-model="description"
-                    :rules="rules"
-                    label="Description"
-                    clearable
-                ></v-text-field>
-            </v-form>
-        </v-card-text>
-        <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn icon @click="cancel"> <v-icon> cancel </v-icon> </v-btn>
-            <v-btn icon @click="confirm"> <v-icon> done </v-icon> </v-btn>
-        </v-card-actions>
-    </v-card>
+  <v-card ripple hover tile>
+    <v-card-title>What do you want to do next ?</v-card-title>
+    <v-card-text>
+      <v-form ref="form">
+        <v-text-field
+          v-model="title"
+          :rules="rules"
+          label="Title"
+          clearable
+        ></v-text-field>
+        <v-text-field
+          v-model="description"
+          :rules="rules"
+          label="Description"
+          clearable
+        ></v-text-field>
+      </v-form>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn icon @click="cancel"> <v-icon> cancel </v-icon> </v-btn>
+      <v-btn icon @click="confirm"> <v-icon> done </v-icon> </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>

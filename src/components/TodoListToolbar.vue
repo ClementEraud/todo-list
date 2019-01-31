@@ -1,13 +1,13 @@
 <template>
-    <v-toolbar>
-        <v-toolbar-title>Things to get done !</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items>
-            <v-btn icon v-on:click="addTodo">
-                <v-icon>add</v-icon>
-            </v-btn>
-        </v-toolbar-items>
-    </v-toolbar>
+  <v-toolbar>
+    <v-toolbar-title>Things to get done !</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items>
+      <v-btn icon v-on:click="addTodo">
+        <v-icon>add</v-icon>
+      </v-btn>
+    </v-toolbar-items>
+  </v-toolbar>
 </template>
 
 <script>
