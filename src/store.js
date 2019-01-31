@@ -1,37 +1,24 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
+
+const todoUrl = 'http://localhost:4000/todo';
 
 export default new Vuex.Store({
   state: {
     darkTheme: false,
     displayAddFormTodo: false,
     todosEditing: [],
-    todos: [
-      {
-        id: 1,
-        title: 'Item 1',
-        description: 'do item 1'
-      },
-      {
-        id: 2,
-        title: 'Item 2',
-        description: 'do item 2'
-      },
-      {
-        id: 3,
-        title: 'Item 3',
-        description: 'do item 3'
-      },
-    ]
+    todos: []
   },
   mutations: {
     SWITCH_THEME(state) {
       state.darkTheme = !state.darkTheme;
     },
     REMOVE_TODO(state, todoToRemove) {
-      state.todos = state.todos.filter(todo => todo.id !== todoToRemove.id);
+      state.todos = state.todos.filter(todo => todo._id !== todoToRemove._id);
     },
     DISPLAY_ADD_FORM_TODO(state, displayFormTodo) {
       state.displayAddFormTodo = displayFormTodo;
@@ -47,7 +34,7 @@ export default new Vuex.Store({
     },
     EDIT_TODO(state, todoEdited) {
       state.todos = state.todos.map(todo => {
-        if(todo.id !== todoEdited.id) {
+        if(todo._id !== todoEdited._id) {
           return todo;
         }
         return todoEdited;
@@ -70,19 +57,56 @@ export default new Vuex.Store({
     removeTodoFromEdition({ commit }, todoId) {
       commit('REMOVE_TODO_FROM_EDITION', todoId);
     },
-    addTodo({ commit }, todoToAdd) {
-      commit('ADD_TODO', todoToAdd);
-      commit('DISPLAY_ADD_FORM_TODO', false);
+    async addTodo({ commit }, todoToAdd) {
+      try {
+        const res = await axios.post(todoUrl, {
+          query: `mutation CreateTodo($newTodo: TodoInput){
+            createTodo(newTodo: $newTodo) {
+              _id
+              title
+              description
+            }
+          }`,
+          variables: {
+            newTodo: todoToAdd
+          }
+        })
+        commit('ADD_TODO', res.data.data.createTodo);
+        commit('DISPLAY_ADD_FORM_TODO', false);
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      }
     },
     editTodo({ commit }, todoEdited) {
       commit('EDIT_TODO', todoEdited);
-      commit('REMOVE_TODO_FROM_EDITION', todoEdited.id);
+      commit('REMOVE_TODO_FROM_EDITION', todoEdited._id);
+    },
+    async fetchTodos({ commit }) {
+      try {
+        // fetch todos
+        const res = await axios.post(todoUrl, {
+          query: `{
+            getAllTodos {
+              _id
+              title
+              description
+            }
+          }
+          `
+        });
+
+        // add them to the store
+        res.data.data.getAllTodos.forEach(todo => {
+          commit('ADD_TODO', todo);
+        });
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
     }
   },
   getters: {
-    getLastTodoId(state) {
-      return state.todos.sort((a, b) => a.id > b.id ? -1 : 1)[0].id;
-    },
     isTodoBeingEdited: state => id => {
       return !!state.todosEditing.find(idEditing => idEditing === id);
     }

@@ -7,7 +7,7 @@
             <v-flex 
                 xs10 
                 v-for="todo in todoItems" 
-                v-bind:key="todo.id">
+                v-bind:key="todo._id">
                 <todo-item v-bind:todoItem="todo"></todo-item>
             </v-flex>
         </v-layout>

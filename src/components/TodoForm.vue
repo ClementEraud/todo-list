@@ -53,7 +53,7 @@ export default {
       this.$refs.form.reset();
 
       if (this.todoToEdit) {
-        this.$store.dispatch("removeTodoFromEdition", this.todoToEdit.id);
+        this.$store.dispatch("removeTodoFromEdition", this.todoToEdit._id);
       } else {
         this.$store.dispatch("displayAddFormTodo", false);
       }
@@ -63,7 +63,7 @@ export default {
         if (this.todoToEdit) {
           // editing existing todo:
           this.$store.dispatch("editTodo", {
-            id: this.todoToEdit.id,
+            _id: this.todoToEdit._id,
             title: this.title,
             description: this.description
           });
@@ -72,7 +72,6 @@ export default {
 
         // adding a new todo:
         this.$store.dispatch("addTodo", {
-          id: this.$store.getters.getLastTodoId + 1,
           title: this.title,
           description: this.description
         });

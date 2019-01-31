@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     isTodoBeingEdited() {
-      return this.$store.getters.isTodoBeingEdited(this.todoItem.id);
+      return this.$store.getters.isTodoBeingEdited(this.todoItem._id);
     }
   },
   props: ["todoItem"],
@@ -34,7 +34,7 @@ export default {
       this.$store.dispatch("removeTodo", this.todoItem);
     },
     displayEdit() {
-      this.$store.dispatch("displayEditFormTodo", this.todoItem.id);
+      this.$store.dispatch("displayEditFormTodo", this.todoItem._id);
     }
   }
 };

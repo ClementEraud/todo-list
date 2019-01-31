@@ -4,7 +4,7 @@
         <v-spacer></v-spacer>
         <v-toolbar-items>
             <v-btn icon v-on:click="addTodo">
-                <v-icon color="white">add</v-icon>
+                <v-icon>add</v-icon>
             </v-btn>
         </v-toolbar-items>
     </v-toolbar>
