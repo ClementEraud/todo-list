@@ -15,21 +15,21 @@
 </template>
 
 <script>
-    import TodoItem from './TodoItem';
-    import TodoForm from './TodoForm';
-    import { mapState } from 'vuex';
+import TodoItem from "./TodoItem";
+import TodoForm from "./TodoForm";
+import { mapState } from "vuex";
 
-    export default {
-        name: 'TodoList',
-        components: {
-            TodoItem,
-            TodoForm,
-        },
-        computed: mapState({
-            todoItems: state => state.todos,
-            displayAddFormTodo: state => state.displayAddFormTodo
-        })
-    }
+export default {
+  name: "TodoList",
+  components: {
+    TodoItem,
+    TodoForm
+  },
+  computed: mapState({
+    todoItems: state => state.todos,
+    displayAddFormTodo: state => state.displayAddFormTodo
+  })
+};
 </script>
 
 <style>

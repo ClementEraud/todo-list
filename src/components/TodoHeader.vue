@@ -13,17 +13,17 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+import { mapState } from "vuex";
 
-    export default {
-        name: 'TodoHeader',
-        computed: mapState({
-            darkTheme: state => state.darkTheme
-        }),
-        methods: {
-            switchTheme: function () {
-                this.$store.dispatch('switchTheme');
-            }
-        }
+export default {
+  name: "TodoHeader",
+  computed: mapState({
+    darkTheme: state => state.darkTheme
+  }),
+  methods: {
+    switchTheme: function() {
+      this.$store.dispatch("switchTheme");
     }
+  }
+};
 </script>

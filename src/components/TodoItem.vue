@@ -16,27 +16,26 @@
 </template>
 
 <script>
-    import TodoForm from './TodoForm';
+import TodoForm from "./TodoForm";
 
-    export default {
-        name: 'TodoItem',
-        components: {
-            TodoForm
-        },
-        computed: {
-            isTodoBeingEdited() {
-                return this.$store.getters.isTodoBeingEdited(this.todoItem.id)
-            }
-        },
-        props: ['todoItem'],
-        methods: {
-            clear() {
-               this.$store.dispatch('removeTodo', this.todoItem);
-            },
-            displayEdit() {
-                this.$store.dispatch('displayEditFormTodo', this.todoItem.id)
-            }
-        }
+export default {
+  name: "TodoItem",
+  components: {
+    TodoForm
+  },
+  computed: {
+    isTodoBeingEdited() {
+      return this.$store.getters.isTodoBeingEdited(this.todoItem.id);
     }
+  },
+  props: ["todoItem"],
+  methods: {
+    clear() {
+      this.$store.dispatch("removeTodo", this.todoItem);
+    },
+    displayEdit() {
+      this.$store.dispatch("displayEditFormTodo", this.todoItem.id);
+    }
+  }
+};
 </script>
-

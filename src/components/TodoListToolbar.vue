@@ -11,12 +11,12 @@
 </template>
 
 <script>
-    export default {
-        name: 'TodoListToolbar',
-        methods: {
-            addTodo() {
-                this.$store.dispatch('displayAddFormTodo', true);
-            }
-        }
+export default {
+  name: "TodoListToolbar",
+  methods: {
+    addTodo() {
+      this.$store.dispatch("displayAddFormTodo", true);
     }
+  }
+};
 </script>

@@ -27,59 +27,57 @@
 
 <script>
 export default {
-    name: 'TodoForm',
-    data() {
-        return {
-            valid: true,
-            title: this.todoToEdit ? this.todoToEdit.title : null,
-            description: this.todoToEdit ? this.todoToEdit.description : null,
-            rules: [
-                v => !!v || `Can't be empty !`,
-                v => (v && v.length !== 0) || `Can't be empty !`,
-                v => (v && v.length < 50) || 'Easy there, tiger!'
-            ]
-        }
+  name: "TodoForm",
+  data() {
+    return {
+      valid: true,
+      title: this.todoToEdit ? this.todoToEdit.title : null,
+      description: this.todoToEdit ? this.todoToEdit.description : null,
+      rules: [
+        v => !!v || `Can't be empty !`,
+        v => (v && v.length !== 0) || `Can't be empty !`,
+        v => (v && v.length < 50) || "Easy there, tiger!"
+      ]
+    };
+  },
+  props: ["todoToEdit"],
+  watch: {
+    title: "validateField",
+    description: "validateField"
+  },
+  methods: {
+    validateField() {
+      this.valid = this.$refs.form.validate();
     },
-    props: ['todoToEdit'],
-    watch: {
-        title: 'validateField',
-        description: 'validateField'
+    cancel() {
+      this.$refs.form.reset();
+
+      if (this.todoToEdit) {
+        this.$store.dispatch("removeTodoFromEdition", this.todoToEdit.id);
+      } else {
+        this.$store.dispatch("displayAddFormTodo", false);
+      }
     },
-    methods: {
-        validateField() {
-            this.valid = this.$refs.form.validate();
-        },
-        cancel() {
-            this.$refs.form.reset();
-            
-            if (this.todoToEdit) {
-                this.$store.dispatch('removeTodoFromEdition', this.todoToEdit.id);
-            } else {
-                this.$store.dispatch('displayAddFormTodo', false);
-            }
-        },
-        confirm() {
-            if(this.$refs.form.validate()) {
-
-                if(this.todoToEdit) {
-                    // editing existing todo:
-                    this.$store.dispatch('editTodo', {
-                        id: this.todoToEdit.id,
-                        title: this.title,
-                        description: this.description
-                    });
-                    return;
-                }
-
-                // adding a new todo:
-                this.$store.dispatch('addTodo', {
-                    id: this.$store.getters.getLastTodoId + 1,
-                    title: this.title,
-                    description: this.description
-                });
-                
-            }
+    confirm() {
+      if (this.$refs.form.validate()) {
+        if (this.todoToEdit) {
+          // editing existing todo:
+          this.$store.dispatch("editTodo", {
+            id: this.todoToEdit.id,
+            title: this.title,
+            description: this.description
+          });
+          return;
         }
+
+        // adding a new todo:
+        this.$store.dispatch("addTodo", {
+          id: this.$store.getters.getLastTodoId + 1,
+          title: this.title,
+          description: this.description
+        });
+      }
     }
-}
+  }
+};
 </script>
