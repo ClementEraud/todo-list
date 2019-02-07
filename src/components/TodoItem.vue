@@ -20,6 +20,7 @@
 
 <script>
 import TodoForm from "./TodoForm";
+import { removeTodo, displayEditFormTodo } from "../constants";
 
 export default {
   name: "TodoItem",
@@ -34,10 +35,10 @@ export default {
   props: ["todoItem"],
   methods: {
     clear() {
-      this.$store.dispatch("removeTodo", this.todoItem);
+      this.$store.dispatch(removeTodo, this.todoItem);
     },
     displayEdit() {
-      this.$store.dispatch("displayEditFormTodo", this.todoItem._id);
+      this.$store.dispatch(displayEditFormTodo, this.todoItem._id);
     }
   }
 };

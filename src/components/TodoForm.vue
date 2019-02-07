@@ -26,6 +26,13 @@
 </template>
 
 <script>
+import {
+  removeTodoFromEdition,
+  displayAddFormTodo,
+  editTodo,
+  addTodo
+} from "../constants";
+
 export default {
   name: "TodoForm",
   data() {
@@ -53,16 +60,16 @@ export default {
       this.$refs.form.reset();
 
       if (this.todoToEdit) {
-        this.$store.dispatch("removeTodoFromEdition", this.todoToEdit._id);
+        this.$store.dispatch(removeTodoFromEdition, this.todoToEdit._id);
       } else {
-        this.$store.dispatch("displayAddFormTodo", false);
+        this.$store.dispatch(displayAddFormTodo, false);
       }
     },
     confirm() {
       if (this.$refs.form.validate()) {
         if (this.todoToEdit) {
           // editing existing todo:
-          this.$store.dispatch("editTodo", {
+          this.$store.dispatch(editTodo, {
             _id: this.todoToEdit._id,
             title: this.title,
             description: this.description
@@ -71,7 +78,7 @@ export default {
         }
 
         // adding a new todo:
-        this.$store.dispatch("addTodo", {
+        this.$store.dispatch(addTodo, {
           title: this.title,
           description: this.description
         });

@@ -23,7 +23,7 @@ export default {
     TodoForm
   },
   computed: mapState({
-    todoItems: state => state.todos,
+    todoItems: state => state.user.todos,
     displayAddFormTodo: state => state.displayAddFormTodo
   })
 };
