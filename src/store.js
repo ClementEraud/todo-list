@@ -4,6 +4,7 @@ import { login } from "./store_actions/login";
 import { removeTodo } from "./store_actions/removeTodo";
 import { addTodo } from "./store_actions/addTodo";
 import { editTodo } from "./store_actions/editTodo";
+import { createAccount } from "./store_actions/createAccount";
 
 import {
   SWITCH_THEME,
@@ -57,6 +58,7 @@ export default new Vuex.Store({
     removeTodo,
     editTodo,
     login,
+    createAccount,
     disconnect({ commit }) {
       commit(DISCONNECT_USER);
     },
@@ -77,17 +79,17 @@ export default new Vuex.Store({
     isTodoBeingEdited: state => id => {
       return !!state.todosEditing.find(idEditing => idEditing === id);
     },
-    getState: state => state,
+    getState: state => state
   },
   plugins: [
     store => {
-      if(localStorage.state) {
+      if (localStorage.state) {
         store.replaceState(JSON.parse(localStorage.state));
       }
 
       store.subscribe((mutation, state) => {
         localStorage.state = JSON.stringify(state);
-      })
-    } 
+      });
+    }
   ]
 });

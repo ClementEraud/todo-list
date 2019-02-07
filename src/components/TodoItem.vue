@@ -4,7 +4,7 @@
       v-if="isTodoBeingEdited"
       v-bind:todoToEdit="todoItem"
     ></todo-form>
-    <v-card ripple hover tile v-if="!isTodoBeingEdited">
+    <v-card hover tile v-if="!isTodoBeingEdited">
       <v-card-title>
         {{ todoItem.title }}
         <v-spacer></v-spacer>

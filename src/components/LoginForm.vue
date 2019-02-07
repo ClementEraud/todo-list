@@ -13,14 +13,11 @@
       label="Password"
       clearable
     ></v-text-field>
-    <v-btn @click="confirm"> Se Connecter </v-btn>
+    <v-btn @click="confirm"> {{ validationText }} </v-btn>
   </v-form>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { login } from "../constants";
-
 export default {
   name: "LoginForm",
   data() {
@@ -34,13 +31,13 @@ export default {
       ]
     };
   },
-  computed: mapState({
-    user: state => state.user
-  }),
+  props: {
+    onConfirm: Function,
+    validationText: String
+  },
   watch: {
     username: "validateField",
-    password: "validateField",
-    user: "goToTodos"
+    password: "validateField"
   },
   methods: {
     validateField() {
@@ -48,16 +45,10 @@ export default {
     },
     confirm() {
       if (this.$refs.loginForm.validate()) {
-        //TO-DO login
-        this.$store.dispatch(login, {
+        this.onConfirm({
           username: this.username,
           password: this.password
         });
-      }
-    },
-    goToTodos() {
-      if (this.user) {
-        this.$router.push("/todos");
       }
     }
   }

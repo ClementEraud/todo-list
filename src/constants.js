@@ -25,4 +25,4 @@ export const displayEditFormTodo = "displayEditFormTodo";
 export const removeTodoFromEdition = "removeTodoFromEdition";
 export const displayAddFormTodo = "displayAddFormTodo";
 export const updateState = "updateState";
-
+export const createAccount = "createAccount";

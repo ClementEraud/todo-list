@@ -24,9 +24,7 @@ export const login = async ({ commit }, login) => {
         password: login.password
       }
     });
-
-    const user = res.data.data.login;
-    commit(LOGIN, user);
+    commit(LOGIN, res.data.data.login);
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(err);

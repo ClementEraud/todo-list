@@ -4,12 +4,10 @@
       <v-spacer></v-spacer>
       <v-flex>
         <login-form
-          v-bind:on-confirm="login"
-          validation-text="Login"
-        ></login-form>
-        <router-link to="/account-creation">
-          <a>Don't have an account ? Create one here !</a>
-        </router-link>
+          v-bind:on-confirm="createAccount"
+          validation-text="Create Account"
+        >
+        </login-form>
       </v-flex>
       <v-spacer></v-spacer>
     </v-layout>
@@ -17,12 +15,12 @@
 </template>
 
 <script>
-import LoginForm from "./LoginForm.vue";
-import { login } from "../constants";
+import LoginForm from "./LoginForm";
+import { createAccount } from "../constants";
 import { mapState } from "vuex";
 
 export default {
-  name: "home",
+  name: "AccountCreation",
   components: {
     LoginForm
   },
@@ -33,8 +31,8 @@ export default {
     user: "goToTodos"
   },
   methods: {
-    login(user) {
-      this.$store.dispatch(login, user);
+    createAccount(newUser) {
+      this.$store.dispatch(createAccount, newUser);
     },
     goToTodos() {
       if (this.user) {

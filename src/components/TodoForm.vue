@@ -1,5 +1,5 @@
 <template>
-  <v-card ripple hover tile>
+  <v-card hover tile>
     <v-card-title>What do you want to do next ?</v-card-title>
     <v-card-text>
       <v-form ref="form">
