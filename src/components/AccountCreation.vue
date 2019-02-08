@@ -6,8 +6,7 @@
         <login-form
           v-bind:on-confirm="createAccount"
           validation-text="Create Account"
-        >
-        </login-form>
+        ></login-form>
       </v-flex>
       <v-spacer></v-spacer>
     </v-layout>
